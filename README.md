@@ -105,6 +105,16 @@ CHI suppoerts large number of cores and large bandwidth
 
 ---
 
+## 👨‍💻 Author
+
+Manal Ahmed  
+[NIT Karnataka, ECE]
+
+---
+
+### 🔗 License
+
+This project is licensed under the MIT License. See `LICENSE` file for details.
 
   
 
