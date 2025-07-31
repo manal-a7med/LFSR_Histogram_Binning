@@ -1,7 +1,7 @@
 # LFSR_Histogram_Binning
  FPGA-based pseudo-random number generator using LFSR with AXI4 interface and real-time histogram binning logic. Verified via Vivado simulation and IP integration.
 
-# LFSR_Histogram_Binning
+# Description
 
 This project implements a Verilog-based Linear Feedback Shift Register (LFSR) for pseudo-random number generation on an FPGA, with on-chip histogram binning and AXI4 interface integration.
 
