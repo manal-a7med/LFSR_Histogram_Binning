@@ -73,7 +73,7 @@ MOESI Cache coherency
 CHI suppoerts large number of cores and large bandwidth
 
 
-## Assignment 2: Histogram Module with AXI-Stream RAM
+##Histogram Module with AXI-Stream RAM
 
 ### Debugging and Fixes
 
