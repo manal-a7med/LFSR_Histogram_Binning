@@ -1,0 +1,220 @@
+$date
+   Wed Apr  2 12:23:16 2025
+$end
+
+$version
+  2024.1
+  $dumpfile ("tb_s_m_hist.vcd") 
+$end
+
+$timescale
+  1ps
+$end
+
+$scope module tb_s_m_hist $end
+$var reg 1 ! aclk $end
+$var reg 1 " aresetn $end
+$var reg 32 # s_axis_tdata [31:0] $end
+$var reg 1 $ s_axis_tvalid $end
+$var wire 1 % s_axis_tready $end
+$var wire 32 & m_axis_tdata [31:0] $end
+$var wire 1 ' m_axis_tvalid $end
+$var reg 1 ( m_axis_tready $end
+$scope module uut $end
+$var wire 1 ) aclk $end
+$var wire 1 * aresetn $end
+$var wire 32 + s_axis_tdata [31:0] $end
+$var wire 1 , s_axis_tvalid $end
+$var reg 1 - s_axis_tready $end
+$var reg 32 . m_axis_tdata [31:0] $end
+$var reg 1 / m_axis_tvalid $end
+$var wire 1 0 m_axis_tready $end
+$var reg 8 1 data_latched [7:0] $end
+$var integer 32 2 i [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+
+#0
+$dumpvars
+0!
+0"
+b0 #
+0$
+x%
+bx &
+x'
+1(
+0)
+0*
+b0 +
+0,
+x-
+bx .
+x/
+10
+bx 1
+bx 2
+$end
+
+#5000
+1!
+1%
+0'
+1)
+1-
+0/
+
+#10000
+0!
+1"
+0)
+1*
+
+#15000
+1!
+b0xxxxxxxx &
+1'
+1)
+b0xxxxxxxx .
+1/
+
+#20000
+0!
+b10000 #
+1$
+0)
+b10000 +
+1,
+
+#25000
+1!
+0'
+1)
+0/
+b10000 1
+
+#30000
+0!
+b111111 #
+0)
+b111111 +
+
+#35000
+1!
+b10000 &
+1'
+1)
+b10000 .
+1/
+b111111 1
+
+#40000
+0!
+b1111111 #
+0)
+b1111111 +
+
+#45000
+1!
+0'
+1)
+0/
+b1111111 1
+
+#50000
+0!
+b10100101 #
+0)
+b10100101 +
+
+#55000
+1!
+b1111111 &
+1'
+1)
+b1111111 .
+1/
+b10100101 1
+
+#60000
+0!
+b11100000 #
+0)
+b11100000 +
+
+#65000
+1!
+0'
+1)
+0/
+b11100000 1
+
+#70000
+0!
+b11111111 #
+0)
+b11111111 +
+
+#75000
+1!
+b11100000 &
+1'
+1)
+b11100000 .
+1/
+b11111111 1
+
+#80000
+0!
+0$
+0)
+0,
+
+#85000
+1!
+0'
+1)
+0/
+
+#90000
+0!
+0)
+
+#95000
+1!
+b11111111 &
+1'
+1)
+b11111111 .
+1/
+
+#100000
+0!
+0)
+
+#105000
+1!
+0'
+1)
+0/
+
+#110000
+0!
+0)
+
+#115000
+1!
+1'
+1)
+1/
+
+#120000
+0!
+0)
+
+#125000
+1!
+0'
+1)
+0/

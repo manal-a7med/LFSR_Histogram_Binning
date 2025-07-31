@@ -1,0 +1,81 @@
+`timescale 1ns/1ps
+
+module s_m_hist (
+    input wire aclk,
+    input wire aresetn,
+
+    // AXI-Stream Slave (Input)
+    input wire [31:0] s_axis_tdata,
+    input wire s_axis_tvalid,
+    output reg s_axis_tready,
+
+    // AXI-Stream Master (Output)
+    output reg [31:0] m_axis_tdata,
+    output reg m_axis_tvalid,
+    input wire m_axis_tready
+);
+
+    // 8 Histogram Bins
+    reg [7:0] bin_counts [0:7];   // Bin count registers
+    reg [7:0] bin_memory [0:7][0:15];  // Storage for bin values (16 per bin)
+    reg [3:0] bin_index [0:7];    // Index for storing values in bins
+
+    integer i;
+    
+    // Reset Logic
+    always @(posedge aclk or negedge aresetn) begin
+        if (!aresetn) begin
+            for (i = 0; i < 8; i = i + 1) begin
+                bin_counts[i] <= 0;
+                bin_index[i]  <= 0;
+            end
+            s_axis_tready <= 1'b1;  // Ready to receive data
+        end 
+        else if (s_axis_tvalid && s_axis_tready) begin
+            // Extract lower 8 bits from input
+            reg [7:0] value;
+            reg [2:0] bin_num;
+            value = s_axis_tdata[7:0];
+
+            // Categorize into bins
+            case (value)
+                8'd1  : 8'd32   : bin_num = 3'd0;
+                8'd33 : 8'd64   : bin_num = 3'd1;
+                8'd65 : 8'd96   : bin_num = 3'd2;
+                8'd97 : 8'd128  : bin_num = 3'd3;
+                8'd129: 8'd160  : bin_num = 3'd4;
+                8'd161: 8'd192  : bin_num = 3'd5;
+                8'd193: 8'd224  : bin_num = 3'd6;
+                8'd225: 8'd255  : bin_num = 3'd7;
+                default: bin_num = 3'd0;
+            endcase
+
+            // Store value in bin memory
+            bin_memory[bin_num][bin_index[bin_num]] <= value;
+            bin_index[bin_num] <= bin_index[bin_num] + 1;
+
+            // Increment count for that bin
+            bin_counts[bin_num] <= bin_counts[bin_num] + 1;
+        end
+    end
+
+    // AXI-Stream Master Interface (Sending Data)
+    reg [2:0] send_index = 0;
+    always @(posedge aclk or negedge aresetn) begin
+        if (!aresetn) begin
+            m_axis_tvalid <= 0;
+            send_index <= 0;
+        end 
+        else if (m_axis_tready) begin
+            if (send_index < 8) begin
+                m_axis_tdata  <= {24'b0, bin_counts[send_index]}; // Send count as 32-bit data
+                m_axis_tvalid <= 1'b1;
+                send_index <= send_index + 1;
+            end 
+            else begin
+                m_axis_tvalid <= 0; // Done sending data
+            end
+        end
+    end
+
+endmodule
