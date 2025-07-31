@@ -73,6 +73,38 @@ MOESI Cache coherency
 CHI suppoerts large number of cores and large bandwidth
 
 
+## Assignment 2: Histogram Module with AXI-Stream RAM
+
+### Debugging and Fixes
+
+- s_m_hist Module
+  - Fixed syntax errors and binning logic
+  - Ensured correct bin count updates
+
+- axi_ram Module
+  - Designed AXI-Stream RAM for histogram bin data storage
+  - Address mapping for bin counts and LFSR-generated values
+  - Fixed width and syntax issues
+
+### Testbench Development
+
+- Created dedicated testbenches for s_m_hist and axi_ram
+- Verified data transfer correctness through waveform analysis
+- Resolved output mismatches
+
+### Simulation and Results Verification
+
+- Verified bin mappings and memory storage against expected outcomes
+- Cross-checked waveform behavior
+
+### AXI Integration
+
+- Verified AXI-Stream handshake signals:
+  - m_axis_tvalid, m_axis_tdata, s_axis_tready, s_axis_tvalid
+- Discussed and validated AXI-Slave interface alignment with system needs
+
+---
+
 
   
 
